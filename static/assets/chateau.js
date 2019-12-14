@@ -12,7 +12,7 @@ function init() {
 
 function bindSocket() {
     socket.emit('join', 'general');
-    socket.on('msg', logMessage);
+    socket.on('message', logMessage);
 }
 
 function bindDOM() {
@@ -26,6 +26,6 @@ function logMessage(message) {
 
 function emitMessage() {
     console.log('saying hi...');
-    socket.emit('msg', 'hello world');
+    socket.emit('message', { content: 'hello world' });
 }
 
