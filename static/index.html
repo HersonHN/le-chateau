@@ -3,13 +3,28 @@
     <head>
         <title>Le Château</title>
         <meta charset="utf-8">
-        <script src="/assets/vendor/socket.io.min.js"></script>
-        <script src="/assets/chateau.js"></script>
+        <style>
+            body {
+                font-face: sans-serif
+            }
+
+            #content {
+                max-width: 800px;
+                margin: auto;
+            }
+        </style>
     </head>
 
     <body>
-        <button class="say-hello">
-            Say Hello
-        </button>
+        <div id="content">
+            <h1>Go to a Room:</h1>
+            <ul>
+                <li><a href="/room/general">General</a></li>
+                <li><a href="/room/sports">Sports</a></li>
+                <li><a href="/room/videogames">Videogames</a></li>
+                <li><a href="/room/fitness">Fitness</a></li>
+                <li><a href="/room/random">Random</a></li>
+            </ul>
+        </div>
     </body>
 </html>
