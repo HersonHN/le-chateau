@@ -11,7 +11,8 @@ function init() {
 }
 
 function bindSocket() {
-    socket.on('msg', (msg) => logMessage(msg));
+    socket.emit('join', 'general');
+    socket.on('msg', logMessage);
 }
 
 function bindDOM() {
