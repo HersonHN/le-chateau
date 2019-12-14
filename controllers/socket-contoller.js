@@ -1,8 +1,6 @@
 
 module.exports = function SocketController(socket) {
 
-    var connectedRoom = '';
-
     socket.on('join', function(room) {
         socket.join(room);
 
