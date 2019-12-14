@@ -7,7 +7,7 @@ const app = express();
 const server = http.Server(app);
 const io = socketIO(server);
 
-const SocketController = require('./controllers/socket.js');
+const SocketController = require('./controllers/socket-contoller');
 
 const port = process.env.CHATEAU_PORT || 1991;
 
