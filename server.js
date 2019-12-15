@@ -22,6 +22,7 @@ const RoomController = require('./controllers/room-contoller');
 
 
 app.use(express.static('static'));
+app.set('HOME', __dirname);
 
 app.get('/', IndexController);
 app.get('/room/:room', RoomController);

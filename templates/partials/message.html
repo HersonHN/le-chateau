@@ -1,5 +1,8 @@
 
-<div class="msg">
+<div class="msg
+    {% if message.error %}error{% endif %}
+    {% if message.bot %}bot{% endif %}
+">
     <b>{{message.author}}:</b>
     {{message.message}}
     <span class="ago" data-timestamp="{{message.timestamp}}"></span>

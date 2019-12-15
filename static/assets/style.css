@@ -93,6 +93,16 @@ h1 {
     padding: .5rem;
 }
 
+.msg.bot {
+    background: lightgoldenrodyellow;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.error {
+    color: red;
+}
+
 .ago {
     float: right;
     display: block;
