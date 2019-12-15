@@ -1,10 +1,5 @@
-const path = require('path');
-const fs = require('fs');
 const nunjucks = require('nunjucks');
-
-const file = path.join(__dirname, '../templates/partials/message.html');
-const templateTXT = fs.readFileSync(file, { encoding: 'utf-8' });
-var template = nunjucks.compile(templateTXT);
+const moment = require('moment');
 
 
 module.exports = function SocketController(socket) {
@@ -15,9 +10,10 @@ module.exports = function SocketController(socket) {
         socket.on('message', function (message) {
 
             message.timestamp = timestamp();
-            let id = socket.id;
-            let messageHTML = template.render({ message });
-            
+            message.time = moment(message.timestamp).fromNow();
+
+            let messageHTML = nunjucks.render('partials/message.html', { message });
+
             // send the message to all other members of the room
             socket.to(room).emit('message', messageHTML);
 

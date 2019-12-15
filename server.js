@@ -11,14 +11,15 @@ const app = express();
 const server = http.Server(app);
 const io = socketIO(server);
 
-const SocketController = require('./controllers/socket-contoller');
-const IndexController = require('./controllers/index-contoller');
-const RoomController = require('./controllers/room-contoller');
-
 nunjucks.configure('templates', {
     autoescape: true,
     express: app
 });
+
+const SocketController = require('./controllers/socket-contoller');
+const IndexController = require('./controllers/index-contoller');
+const RoomController = require('./controllers/room-contoller');
+
 
 app.use(express.static('static'));
 
