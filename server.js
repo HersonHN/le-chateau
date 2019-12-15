@@ -12,6 +12,7 @@ const server = http.Server(app);
 const io = socketIO(server);
 
 const SocketController = require('./controllers/socket-contoller');
+const IndexController = require('./controllers/index-contoller');
 const RoomController = require('./controllers/room-contoller');
 
 nunjucks.configure('templates', {
@@ -21,6 +22,7 @@ nunjucks.configure('templates', {
 
 app.use(express.static('static'));
 
+app.get('/', IndexController);
 app.get('/room/:room', RoomController);
 io.on('connection', SocketController);
 
