@@ -1,19 +1,21 @@
 'use strict';
 
 const socket = io();
-
-window.username = '';
 window.onload = init;
 
 
 function init() {
     bindSocket();
     bindDOM();
+    focus('.username-input .content');
+}
 
+function welcome() {
     scrollMessages();
+    focus('.message-input .content');
+
     updateTimestamps();
     setInterval(updateTimestamps, 15000);
-    focus('.username-input .content');
 }
 
 function bindSocket() {
@@ -62,8 +64,9 @@ function setUserName() {
     $window.classList.add('hidden');
     window.username = username;
 
-    focus('.message-input .content');
+    welcome();
 }
+
 
 function notify(message) {
     if (Notification.permission !== 'granted') {
