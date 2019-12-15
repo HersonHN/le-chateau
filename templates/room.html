@@ -4,15 +4,18 @@
 
 {% block content %}
 
-{% for message in messages %}
-<div>
-    <p><b>{{message.author}}:</b> {{message.message}}</p>
-</div>
-{% endfor %}
+<section class="messages">
+    {% for message in messages %}
+    {% include "partials/message.html" %}
+    {% endfor %}
+</section>
 
-<button class="say-hello">
-    Say Hello
-</button>
+<section class="message-input">
+    <input type="text" maxlength="1000" />
+    <button class="say-hello">
+        Say Hello
+    </button>
+</section>
 
 <script src="/assets/vendor/socket.io.min.js"></script>
 <script src="/assets/chateau.js"></script>

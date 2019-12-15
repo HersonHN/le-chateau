@@ -1,0 +1,13 @@
+body {
+    font-family: sans-serif
+}
+#content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.ago {
+    float: right;
+    font-size: 0.5rem;
+    color: #bbb;
+}
