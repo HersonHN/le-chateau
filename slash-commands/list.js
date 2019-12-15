@@ -3,7 +3,7 @@ module.exports = [
     {
         command: 'stock',
         selfMessage: true,
-        match: /\/(stock)(\W)(\w+)/i,
+        match: /\/(stock)(\W)([\w\.\-]+)/i,
         run: 'node ./slash-commands/stock/stock.js'
     },
     {
