@@ -4,10 +4,24 @@ const Message = require('../models/Message');
 
 module.exports = async function RoomController(req, res) {
     let { room } = req.params;
+
+    if (!validName(room)) {
+        res.statusCode = 400;
+        return res.render('error.html', { error: 'Invalid Room Name' });
+    }
+    
+    room = room.replace(/\-/g, ' ');
+
     let messages = await getMessages(room);
     messages.reverse();
 
     res.render('room.html', { room, messages });
+}
+
+function validName(room) {
+    if (room.lenght > 40) return false;
+    let valid = room.replace(/[^\-a-zA-Z]/gi, '').toLowerCase();
+    return (room === valid);
 }
 
 function getMessages(room) {
@@ -18,3 +32,4 @@ function getMessages(room) {
 
     return query.exec();
 }
+
