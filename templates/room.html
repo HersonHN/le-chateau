@@ -1,13 +1,19 @@
 <!doctype html>
 <html>
     <head>
-        <title>Le Château</title>
+        <title>{{ room }} - Le Château</title>
         <meta charset="utf-8">
         <script src="/assets/vendor/socket.io.min.js"></script>
         <script src="/assets/chateau.js"></script>
     </head>
 
     <body>
+        {% for message in messages %}
+        <div>
+            <p><b>{{message.author}}:</b> {{message.message}}</p>
+        </div>
+        {% endfor %}
+
         <button class="say-hello">
             Say Hello
         </button>
