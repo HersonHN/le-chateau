@@ -20,6 +20,8 @@ function init() {
             visitChatroom($input.value);
         }
     });
+
+    $input.focus();
 }
 
 function visitChatroom(room) {

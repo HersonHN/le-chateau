@@ -2,7 +2,7 @@
 
 const socket = io();
 
-window.username = 'herson'; // testing
+window.username = ''; // testing
 window.onload = init;
 
 
@@ -10,9 +10,9 @@ function init() {
     bindSocket();
     bindDOM();
 
+    setUserName();
     updateTimestamps();
     setInterval(updateTimestamps, 15000);
-
 }
 
 function bindSocket() {
@@ -31,6 +31,12 @@ function bindDOM() {
             emitMessage();
         }
     });
+
+    $input.focus();
+}
+
+function setUserName() {
+    window.username = prompt('Enter a username:') || 'anonymous';
 }
 
 function logMessage(message) {
