@@ -31,6 +31,11 @@ a, a:visited {
     justify-content: flex-start;
     align-items: stretch;
     align-content: stretch;
+
+    background-image: url('/assets/img/chateau.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
 }
 
 h1 {
@@ -41,7 +46,6 @@ h1 {
     padding: .5rem;
     flex: 1 1 auto;
     overflow: auto;
-    background-color: #fff;
 }
 
 .message-input {
@@ -103,11 +107,4 @@ h1 {
 
 .float {
     float: right;
-}
-
-.chateau-bg {
-    background-image: url('/assets/img/chateau.png');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center bottom;
 }
