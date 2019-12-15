@@ -5,6 +5,7 @@ const Message = require('../models/Message');
 module.exports = async function RoomController(req, res) {
     let { room } = req.params;
     let messages = await getMessages(room);
+    messages.reverse();
 
     res.render('room.html', { room, messages });
 }

@@ -1,6 +1,7 @@
 const nunjucks = require('nunjucks');
 const moment = require('moment');
-
+const mongoose = require('mongoose');
+const Message = require('../models/Message');
 
 module.exports = function SocketController(socket) {
 
@@ -10,6 +11,9 @@ module.exports = function SocketController(socket) {
         socket.on('message', function (message) {
             let timestampUTC = moment.utc().valueOf();
             message.timestamp = timestampUTC;
+            
+            let model = mongoose.model(room, Message, room);
+            model.create(message);
 
             let messageHTML = nunjucks.render('partials/message.html', { message });
 
