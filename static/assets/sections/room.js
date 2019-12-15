@@ -2,7 +2,7 @@
 
 const socket = io();
 
-window.username = ''; // testing
+window.username = '';
 window.onload = init;
 
 
@@ -10,8 +10,9 @@ function init() {
     bindSocket();
     bindDOM();
 
-    setUserName();
     updateTimestamps();
+    scrollMessages();
+    setUserName();
     setInterval(updateTimestamps, 15000);
 }
 
@@ -36,10 +37,14 @@ function bindDOM() {
     });
 
     $input.focus();
+
+    window.onfocus = function() {
+        setUserName();
+    }
 }
 
 function setUserName() {
-    window.username = prompt('Enter a username:') || 'anonymous';
+    window.username = window.username || prompt('Enter a username:');
 }
 
 function notify(message) {
@@ -48,9 +53,10 @@ function notify(message) {
     }
 
     let notification = new Notification(document.title, {
+        icon: '/apple-icon.png',
         body: `${message.author}: ${message.message}`,
     });
-    
+
     notification.onclick = function () {
         window.focus();
     }
@@ -74,14 +80,19 @@ function logMessage(message) {
     updateTimestamps(div);
 
     if (scrolled) {
-        $messages.scrollTop = $messages.scrollHeight;
+        scrollMessages();
     }
+}
+
+function scrollMessages() {
+    let $messages = document.querySelector('.messages');
+    $messages.scrollTop = $messages.scrollHeight;
 }
 
 function emitMessage() {
     const $input = document.querySelector('.message-input .content');
     const message = $input.value.trim();
-    const author = window.username;
+    const author = window.username || 'anonymous';
     const timestamp = moment.utc().valueOf();
     
     if (!message) return;
