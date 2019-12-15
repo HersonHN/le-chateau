@@ -10,7 +10,9 @@ function init() {
     bindSocket();
     bindDOM();
 
+    updateTimestamps();
     setInterval(updateTimestamps, 15000);
+
 }
 
 function bindSocket() {
@@ -36,6 +38,7 @@ function logMessage(message) {
     let div = document.createElement('div');
     div.innerHTML = message;
     $messages.append(div);
+    updateTimestamps(div);
 }
 
 function emitMessage() {
@@ -52,11 +55,12 @@ function getRoomName() {
     return location.pathname.split('/').pop();
 }
 
-function updateTimestamps() {
-    const elements = document.querySelectorAll('.msg .ago');
+function updateTimestamps(parent) {
+    parent = parent || document;
+    const elements = parent.querySelectorAll('.msg .ago');
 
     for (let element of elements) {
-        let timestamp = element.getAttribute('data-timestamp');
-        element.innerHTML = moment(+timestamp).fromNow();
+        let timestampUTC = element.getAttribute('data-timestamp');
+        element.innerHTML = moment.utc(+timestampUTC).fromNow();
     }
 }

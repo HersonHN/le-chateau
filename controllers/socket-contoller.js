@@ -8,9 +8,8 @@ module.exports = function SocketController(socket) {
         socket.join(room);
 
         socket.on('message', function (message) {
-
-            message.timestamp = timestamp();
-            message.time = moment(message.timestamp).fromNow();
+            let timestampUTC = moment.utc().valueOf();
+            message.timestamp = timestampUTC;
 
             let messageHTML = nunjucks.render('partials/message.html', { message });
 
@@ -25,7 +24,3 @@ module.exports = function SocketController(socket) {
 
 }
 
-
-function timestamp() {
-    return +(new Date());
-}
