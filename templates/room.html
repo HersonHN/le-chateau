@@ -5,7 +5,13 @@
 {% block content %}
 
 <section class="messages">
-    <h1>{{ room | title }} Chatroom</h1>
+    <div>
+        <div class="float double-line">
+            <small><a href="/">Go home</a></small>
+        </div>
+        <h1>{{ room | title }} Chatroom</h1>
+    </div>
+
     {% for message in messages %}
     {% include "partials/message.html" %}
     {% endfor %}
@@ -20,5 +26,5 @@
 
 <script src="/assets/vendor/socket.io.min.js"></script>
 <script src="/assets/vendor/moment.min.js"></script>
-<script src="/assets/room.js"></script>
+<script src="/assets/sections/room.js"></script>
 {% endblock %}

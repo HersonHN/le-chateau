@@ -3,13 +3,22 @@
 {% set title = "Le Château" %}
 {% block content %}
 
-<h1>Go to a Room:</h1>
+<h1>Visit any Chatroom:</h1>
 <ul>
     <li><a href="/room/general">General</a></li>
-    <li><a href="/room/sports">Sports</a></li>
-    <li><a href="/room/videogames">Videogames</a></li>
+    <li><a href="/room/music">Music</a></li>
+    <li><a href="/room/video-games">Video Games</a></li>
     <li><a href="/room/fitness">Fitness</a></li>
     <li><a href="/room/random">Random</a></li>
 </ul>
+
+<p>Or create it yourself:</p>
+
+<section class="message-input">
+    <input class="content" type="text" maxlength="40" />
+    <button class="send">Go</button>
+</section>
+
+<script src="/assets/sections/index-page.js"></script>
 
 {% endblock %}
