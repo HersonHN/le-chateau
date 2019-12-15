@@ -25,7 +25,7 @@ function findCommand(message) {
         let matches = message.match(com.match);
         if (matches) {
             command = com;
-            command.query = [matches];
+            command.query = matches[0];
             break;
         }
     }
@@ -40,13 +40,15 @@ function findCommand(message) {
 async function executeCommand(command, originalMessage) {
     let dir = path.join(__dirname, '..');
 
-    let { stdout, stderr } = await exec(command.run, { cwd: dir })
+    let shellCommand = `${command.run} "${command.query}"`;
+    let { stdout, stderr } = await exec(shellCommand, {
+        cwd: dir,
+        env: process.env,
+    });
 
     if (stderr) {
         console.error(stderr);
     }
-    console.log(command.command);
-    console.log(stdout);
 
     if (command.selfMessage) {
         return {
