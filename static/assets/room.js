@@ -34,11 +34,18 @@ function bindDOM() {
 }
 
 function logMessage(message) {
-    let $messages = document.querySelector('.messages');
+    let messages = document.querySelector('.messages');
     let div = document.createElement('div');
     div.innerHTML = message;
-    $messages.append(div);
+    
+    let scrolled = isScrolled(messages);
+
+    messages.append(div);
     updateTimestamps(div);
+
+    if (scrolled) {
+        messages.scrollTop = messages.scrollHeight;
+    }
 }
 
 function emitMessage() {
@@ -63,4 +70,8 @@ function updateTimestamps(parent) {
         let timestampUTC = element.getAttribute('data-timestamp');
         element.innerHTML = moment.utc(+timestampUTC).fromNow();
     }
+}
+
+function isScrolled(element) {
+    return (element.scrollHeight - element.scrollTop === element.clientHeight);
 }
