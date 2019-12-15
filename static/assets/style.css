@@ -104,3 +104,10 @@ h1 {
 .float {
     float: right;
 }
+
+.chateau-bg {
+    background-image: url('/assets/img/chateau.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
