@@ -8,12 +8,20 @@
     function init() {
         bindSocket();
         bindDOM();
-        focus('.username-input .content');
+        
+        if (sessionStorage.username) {
+            welcome();
+        } else {
+            focus('.username-input .content');
+        }
     }
 
     function welcome() {
         scrollMessages();
         focus('.message-input .content');
+
+        let $window = document.querySelector('.username-window');
+        $window.classList.add('hidden');
 
         updateTimestamps();
         setInterval(updateTimestamps, 15000);
@@ -58,14 +66,12 @@
 
     function setUserName() {
         let $input = document.querySelector('.username-input input');
-        let $window = document.querySelector('.username-window');
 
         let username = $input.value;
         if (!username) return alert('Enter your username');
         if (username.length > 20) return alert('Username too long');
 
-        $window.classList.add('hidden');
-        window.username = username;
+        sessionStorage.username = username;
 
         welcome();
     }
@@ -109,7 +115,7 @@
     function emitMessage() {
         let $input = document.querySelector('.message-input .content');
         let message = $input.value.trim();
-        let author = window.username || 'anonymous';
+        let author = sessionStorage.username || 'anonymous';
         
         if (!message) return;
         $input.value = '';
