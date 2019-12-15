@@ -13,6 +13,10 @@ body {
     background-color: #fff;
 }
 
+ul {
+    margin: 0;
+}
+
 a, a:visited {
     color: inherit;
 }
@@ -27,6 +31,10 @@ a, a:visited {
     justify-content: flex-start;
     align-items: stretch;
     align-content: stretch;
+}
+
+h1 {
+    padding-top: 3rem;  
 }
 
 .messages {
@@ -88,10 +96,11 @@ a, a:visited {
     color: #bbb;
 }
 
-.float {
-    float: right;
+.go-home {
+    line-height: 2rem;
+    margin-top: 3.5rem;
 }
 
-.double-line {
-    line-height: 2rem;
+.float {
+    float: right;
 }
