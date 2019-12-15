@@ -17,14 +17,21 @@
     {% endfor %}
 </section>
 
-<section class="message-input">
+<section class="message-input nice-input">
     <input class="content" type="text" maxlength="1000" />
-    <button class="send">
-        Send
-    </button>
+    <button class="send">Send</button>
 </section>
 
-
+<section class="username-window bg-chateau">
+    <div class="w-small">
+        <h3>Enter your username:</h3>
+        <section class="username-input nice-input">
+            <input class="content" type="text" maxlength="40" />
+            <button class="send">Login</button>
+        </section>
+        <p>Or go back <a href="/">home</a>.</p>
+    </div>
+</section>
 
 <script type="text/template" id="message-template">
     <div class="msg">

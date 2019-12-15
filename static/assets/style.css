@@ -31,7 +31,9 @@ a, a:visited {
     justify-content: flex-start;
     align-items: stretch;
     align-content: stretch;
+}
 
+.bg-chateau {
     background-image: url('/assets/img/chateau.png');
     background-size: 100%;
     background-repeat: no-repeat;
@@ -48,7 +50,7 @@ h1 {
     overflow: auto;
 }
 
-.message-input {
+.nice-input {
     padding: 0;
     text-align: center;
     font-size: 1rem;
@@ -65,14 +67,14 @@ h1 {
     margin-bottom: 5px;
 }
 
-.message-input button,
-.message-input input {
+.nice-input button,
+.nice-input input {
     border: none;
     outline: none;
     background: transparent;
 }
 
-.message-input button {
+.nice-input button {
     width: 3rem;
     height: 3rem;
     text-align: center;
@@ -80,7 +82,7 @@ h1 {
     background: #eee;
 }
 
-.message-input input {
+.nice-input input {
     height: 3rem;
     flex: 1 1 auto;
     padding: .5rem 1rem;
@@ -105,6 +107,30 @@ h1 {
     margin-top: 3.5rem;
 }
 
+.username-window {
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    padding-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: stretch;
+    align-content: center;
+}
+
+.w-small {
+    max-width: 400px;
+    margin: auto;
+}
+
 .float {
     float: right;
+}
+
+.hidden {
+    display: none;
 }

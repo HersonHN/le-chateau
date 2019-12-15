@@ -10,10 +10,10 @@ function init() {
     bindSocket();
     bindDOM();
 
-    updateTimestamps();
     scrollMessages();
-    setUserName();
+    updateTimestamps();
     setInterval(updateTimestamps, 15000);
+    focus('.username-input .content');
 }
 
 function bindSocket() {
@@ -26,25 +26,43 @@ function bindSocket() {
 }
 
 function bindDOM() {
-    const $button = document.querySelector('.message-input .send');
-    const $input = document.querySelector('.message-input .content');
+    let $messageInput = document.querySelector('.message-input');
+    let $usernameInput = document.querySelector('.username-input');
 
-    $button.addEventListener('click', emitMessage);
-    $input.addEventListener('keyup', (e) => {
-        if (e.keyCode === 13) {
-            emitMessage();
-        }
-    });
 
-    $input.focus();
+    addEventToNiceInput($messageInput, emitMessage);
+    addEventToNiceInput($usernameInput, setUserName);
 
-    window.onfocus = function() {
-        setUserName();
+    function addEventToNiceInput($parent, fn) {
+        let $button = $parent.querySelector('button');
+        let $input = $parent.querySelector('input');
+
+        $button.addEventListener('click', fn);
+        $input.addEventListener('keyup', (e) => {
+            if (e.keyCode === 13) {
+                fn();
+            }
+        });
     }
 }
 
+function focus(query) {
+    let $input = document.querySelector(query);
+    $input.focus();
+}
+
 function setUserName() {
-    window.username = window.username || prompt('Enter a username:');
+    let $input = document.querySelector('.username-input input');
+    let $window = document.querySelector('.username-window');
+
+    let username = $input.value;
+    if (!username) return alert('Enter your username');
+    if (username.length > 20) return alert('Username too long');
+
+    $window.classList.add('hidden');
+    window.username = username;
+
+    focus('.message-input .content');
 }
 
 function notify(message) {
@@ -90,10 +108,10 @@ function scrollMessages() {
 }
 
 function emitMessage() {
-    const $input = document.querySelector('.message-input .content');
-    const message = $input.value.trim();
-    const author = window.username || 'anonymous';
-    const timestamp = moment.utc().valueOf();
+    let $input = document.querySelector('.message-input .content');
+    let message = $input.value.trim();
+    let author = window.username || 'anonymous';
+    let timestamp = moment.utc().valueOf();
     
     if (!message) return;
     $input.value = '';
@@ -107,7 +125,7 @@ function getRoomName() {
 
 function updateTimestamps(parent) {
     parent = parent || document;
-    const elements = parent.querySelectorAll('.msg .ago');
+    let elements = parent.querySelectorAll('.msg .ago');
 
     for (let element of elements) {
         let timestampUTC = element.getAttribute('data-timestamp');

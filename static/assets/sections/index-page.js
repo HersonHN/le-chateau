@@ -1,15 +1,10 @@
 'use strict';
 
-// <section class="message-input">
-//     <input class="content" type="text" maxlength="40" />
-//     <button class="send">Go</button>
-// </section>
-
 window.onload = init;
 
 function init() {
-    const $button = document.querySelector('.message-input .send');
-    const $input = document.querySelector('.message-input .content');
+    const $button = document.querySelector('.room-input .send');
+    const $input = document.querySelector('.room-input .content');
 
     $button.addEventListener('click', () => {
         visitChatroom($input.value);
