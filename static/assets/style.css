@@ -10,7 +10,7 @@ html, body {
 
 body {
     font-family: sans-serif;
-    background-color: #eee;
+    background-color: #fff;
 }
 
 #content {
@@ -33,21 +33,42 @@ body {
 }
 
 .message-input {
-    padding: 1rem;
+    padding: 0;
     text-align: center;
     font-size: 1rem;
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+
+    border: 3px solid black;
+    background: white;
+    margin-bottom: 5px;
+}
+
+.message-input button,
+.message-input input {
+    border: none;
+    outline: none;
+    background: transparent;
 }
 
 .message-input button {
     width: 3rem;
     height: 3rem;
     text-align: center;
+    cursor: pointer;
+    background: #eee;
 }
 
 .message-input input {
-    width: calc(100% - 4rem);
     height: 3rem;
+    flex: 1 1 auto;
     padding: .5rem 1rem;
+    font-size: 1.05rem;
 }
 
 .msg {
