@@ -46,8 +46,9 @@ async function executeCommand(command, originalMessage) {
         env: process.env,
     });
 
-    if (stderr) {
+    if (stderr.trim()) {
         console.error(stderr);
+        return { error: stderr.trim() }
     }
 
     if (command.selfMessage) {

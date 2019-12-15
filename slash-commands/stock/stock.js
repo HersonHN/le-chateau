@@ -1,2 +1,2 @@
 console
-    .log('Not implemented yet');
+    .error('Not implemented yet');
