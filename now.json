@@ -1,0 +1,12 @@
+{
+  "name": "chateau",
+  "version": 1,
+  "public": true,
+  "alias": [
+    "le-chateau.herson.hn"
+  ],
+  "env": {
+    "CHATEAU_DB": "@chateau-db",
+    "CHATEAU_PORT": "1991"
+  }
+}
