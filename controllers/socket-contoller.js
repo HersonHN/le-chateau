@@ -1,5 +1,7 @@
 const moment = require('moment');
 const mongoose = require('mongoose');
+const nunjucks = require('nunjucks');
+
 const Message = require('../models/Message');
 
 module.exports = function SocketController(socket) {
@@ -14,8 +16,14 @@ module.exports = function SocketController(socket) {
             let model = mongoose.model(room, Message, room);
             model.create(message);
 
+            let html = nunjucks.render('partials/message.html', { message });
+            message.html = html;
+
             // send the message to all other members of the room
             socket.to(room).emit('message', message);
+            
+            // send the message to the socket itseft
+            this.emit('message', { html, selfMessage: true });
         });
     });
 
