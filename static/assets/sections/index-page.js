@@ -21,6 +21,5 @@ function init() {
 
 function visitChatroom(room) {
     room = room.replace(/\s/g, '-').toLowerCase();
-    console.log('room', room);
     window.location.pathname = `/room/${room}`;
 }

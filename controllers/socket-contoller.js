@@ -17,7 +17,8 @@ module.exports = function SocketController(socket) {
             if (message.isCommand) {
                 parseCommand(message).then((message) => {
                     processMessage({ message, socket, room, selfSocket });
-                });
+                })
+                .catch(console.error);
 
             } else {
                 processMessage({ message, socket, room, selfSocket });

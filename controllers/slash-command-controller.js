@@ -40,7 +40,10 @@ function findCommand(message) {
 async function executeCommand(command, originalMessage) {
     let dir = path.join(__dirname, '..');
 
-    let shellCommand = `${command.run} "${command.query}"`;
+    let shellCommand = command.run;
+    if (command.sendQuery) {
+        shellCommand = `${command.run} "${command.query}"`;
+    }
     let { stdout, stderr } = await exec(shellCommand, {
         cwd: dir,
         env: process.env,
