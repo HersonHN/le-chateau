@@ -18,7 +18,10 @@ function init() {
 function bindSocket() {
     let room = getRoomName();
     socket.emit('join', room);
-    socket.on('message', logMessage);
+    socket.on('message', (message) => {
+        notify(message)
+        logMessage(message);
+    });
 }
 
 function bindDOM() {
@@ -39,18 +42,39 @@ function setUserName() {
     window.username = prompt('Enter a username:') || 'anonymous';
 }
 
-function logMessage(message) {
-    let messages = document.querySelector('.messages');
-    let div = document.createElement('div');
-    div.innerHTML = message;
-    
-    let scrolled = isScrolled(messages);
+function notify(message) {
+    if (Notification.permission !== 'granted') {
+        return Notification.requestPermission();
+    }
 
-    messages.append(div);
+    let notification = new Notification(document.title, {
+        body: `${message.author}: ${message.message}`,
+    });
+    
+    notification.onclick = function () {
+        window.focus();
+    }
+}
+
+function logMessage(message) {
+    let $messages = document.querySelector('.messages');
+    let template = document.querySelector('#message-template').innerHTML;
+
+    let messageHTML = template
+        .replace('{author}', message.author)
+        .replace('{message}', message.message)
+        .replace('{timestamp}', message.timestamp);
+
+    let div = document.createElement('div');
+    div.innerHTML = messageHTML;
+    
+    let scrolled = isScrolled($messages);
+
+    $messages.append(div);
     updateTimestamps(div);
 
     if (scrolled) {
-        messages.scrollTop = messages.scrollHeight;
+        $messages.scrollTop = $messages.scrollHeight;
     }
 }
 
@@ -58,10 +82,12 @@ function emitMessage() {
     const $input = document.querySelector('.message-input .content');
     const message = $input.value.trim();
     const author = window.username;
+    const timestamp = moment.utc().valueOf();
     
     if (!message) return;
     $input.value = '';
     socket.emit('message', { message, author });
+    logMessage({ message, author, timestamp });
 }
 
 function getRoomName() {

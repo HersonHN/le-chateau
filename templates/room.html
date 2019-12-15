@@ -24,6 +24,15 @@
     </button>
 </section>
 
+
+
+<script type="text/template" id="message-template">
+    <div class="msg">
+        <b>{author}:</b> {message}
+        <span class="ago" data-timestamp="{timestamp}"></span>
+    </div>
+</script>
+
 <script src="/assets/vendor/socket.io.min.js"></script>
 <script src="/assets/vendor/moment.min.js"></script>
 <script src="/assets/sections/room.js"></script>
