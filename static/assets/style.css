@@ -84,6 +84,7 @@ h1 {
 
 .nice-input input {
     height: 3rem;
+    min-height: 3rem;
     flex: 1 1 auto;
     padding: .5rem 1rem;
     font-size: 1.05rem;
