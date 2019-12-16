@@ -1,8 +1,7 @@
 const axios = require('axios');
 const parser = require('csv-parse/lib/sync');
 
-const API = 'https://stooq.com/q/l/';
-
+const API = 'http://stooq.com/q/l/';
 
 init();
 
