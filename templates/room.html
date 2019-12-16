@@ -22,7 +22,7 @@
     <button class="send">Send</button>
 </section>
 
-<section class="username-window bg-chateau">
+<section class="username-window bg-chateau hidden">
     <div class="w-small">
         <h3>Enter your username:</h3>
         <section class="username-input nice-input">
@@ -32,13 +32,6 @@
         <p>Or go back <a href="/">home</a>.</p>
     </div>
 </section>
-
-<script type="text/template" id="message-template">
-    <div class="msg">
-        <b>{author}:</b> {message}
-        <span class="ago" data-timestamp="{timestamp}"></span>
-    </div>
-</script>
 
 <script src="/assets/vendor/socket.io.min.js"></script>
 <script src="/assets/vendor/moment.min.js"></script>

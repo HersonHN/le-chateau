@@ -9,11 +9,17 @@
         bindSocket();
         bindDOM();
         
-        if (sessionStorage.username) {
-            welcome();
+        if (!sessionStorage.username) {
+            askName();
         } else {
-            focus('.username-input .content');
+            welcome();
         }
+    }
+
+    function askName() {
+        let $window = document.querySelector('.username-window');
+        $window.classList.remove('hidden');
+        focus('.username-input .content');
     }
 
     function welcome() {
