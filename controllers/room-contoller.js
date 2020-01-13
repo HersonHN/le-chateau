@@ -10,8 +10,6 @@ module.exports = async function RoomController(req, res) {
         return res.render('error.html', { error: 'Invalid Room Name' });
     }
     
-    room = room.replace(/\-/g, ' ');
-
     let messages = await getMessages(room);
     messages.reverse();
 
